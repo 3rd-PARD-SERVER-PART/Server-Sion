@@ -19,7 +19,7 @@ public class MenuService {
     public void save(MenuDto menuDto) {
         Menu menu = Menu.builder()
                 .menuName(menuDto.getMenuName())
-                .menuPrice(menuDto.getMenuPrice())
+                .menuPrice(Integer.parseInt(menuDto.getMenuPrice()))
                 .build();
         menuRepository.save(menu);
     }
@@ -29,7 +29,7 @@ public class MenuService {
         if (menu != null) {
             return MenuDto.builder()
                     .menuName(menu.getMenuName())
-                    .menuPrice(menu.getMenuPrice())
+                    .menuPrice(String.valueOf(menu.getMenuPrice()))
                     .build();
         }
         return null;
@@ -40,7 +40,7 @@ public class MenuService {
         return menus.stream()
                 .map(menu -> MenuDto.builder()
                         .menuName(menu.getMenuName())
-                        .menuPrice(menu.getMenuPrice())
+                        .menuPrice(String.valueOf(menu.getMenuPrice()))
                         .build())
                 .collect(Collectors.toList());
     }
@@ -49,7 +49,7 @@ public class MenuService {
         Menu menu = menuRepository.findById(menuId).orElse(null);
         if (menu != null) {
             menu.setMenuName(menuDto.getMenuName());
-            menu.setMenuPrice(menuDto.getMenuPrice());
+            menu.setMenuPrice(Integer.parseInt(menuDto.getMenuPrice()));
             menuRepository.save(menu);
         }
     }
@@ -71,7 +71,7 @@ public class MenuService {
             Menu randomMenu = menus.get(randomIndex);
             return MenuDto.builder()
                     .menuName(randomMenu.getMenuName())
-                    .menuPrice(randomMenu.getMenuPrice())
+                    .menuPrice(String.valueOf(randomMenu.getMenuPrice()))
                     .build();
         }
         return null;
@@ -82,7 +82,7 @@ public class MenuService {
         return menus.stream()
                 .map(menu -> MenuDto.builder()
                         .menuName(menu.getMenuName())
-                        .menuPrice(menu.getMenuPrice())
+                        .menuPrice(String.valueOf(menu.getMenuPrice()))
                         .build())
                 .collect(Collectors.toList());
     }
@@ -92,7 +92,7 @@ public class MenuService {
         return menus.stream()
                 .map(menu -> MenuDto.builder()
                         .menuName(menu.getMenuName())
-                        .menuPrice(menu.getMenuPrice())
+                        .menuPrice(String.valueOf(menu.getMenuPrice()))
                         .build())
                 .collect(Collectors.toList());
     }
@@ -102,7 +102,7 @@ public class MenuService {
         if (menu != null) {
             return MenuDto.builder()
                     .menuName(menu.getMenuName())
-                    .menuPrice(menu.getMenuPrice())
+                    .menuPrice(String.valueOf(menu.getMenuPrice()))
                     .build();
         }
         return null;

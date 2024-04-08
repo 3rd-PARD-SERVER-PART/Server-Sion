@@ -21,7 +21,7 @@ public class Menu {
     private String menuName;
 
     @Column(name = "menuPrice")
-    private String menuPrice;
+    private int menuPrice;
     
     
     @CreationTimestamp
