@@ -1,35 +1,35 @@
-package org.africalib.gallery.secondseminar.user.controller;
+package org.africalib.gallery.secondseminar.menu.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.africalib.gallery.secondseminar.user.dto.UserDto;
-import org.africalib.gallery.secondseminar.user.service.UserService;
+import org.africalib.gallery.secondseminar.menu.dto.MenuDto;
+import org.africalib.gallery.secondseminar.menu.service.MenuService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserController {
-    private final UserService userService;
+@RequestMapping("/menu")
+public class MenuController {
+    private final MenuService menuService;
     @PostMapping("")
-    public void saveUser(@RequestBody UserDto userDto){
-        userService.saveUser(userDto);
+    public void saveMenu(@RequestBody MenuDto menuDto){
+        menuService.saveMenu(menuDto);
     }
     @GetMapping("/{studentId}")
-    public UserDto findById(@PathVariable Integer studentId){
-        return userService.findById(studentId);
+    public MenuDto findById(@PathVariable Integer studentId){
+        return menuService.findById(studentId);
     }
     @GetMapping("")
-    public List<UserDto> findAll(){
-        return userService.findAll();
+    public List<MenuDto> findAll(){
+        return menuService.findAll();
     }
     @PatchMapping("/{studentId}")
-    public void update(@PathVariable Integer studentId,@RequestBody UserDto userDto){
-        userService.update(studentId,userDto);
+    public void update(@PathVariable Integer studentId,@RequestBody MenuDto menuDto){
+        menuService.update(studentId,menuDto);
     }
     @DeleteMapping("/{studentId}")
-    public void delete(@PathVariable Integer studentId,@RequestBody UserDto userDto){
-        userService.delete(studentId);
+    public void delete(@PathVariable Integer studentId,@RequestBody MenuDto menuDto){
+        menuService.delete(studentId);
     }
 }

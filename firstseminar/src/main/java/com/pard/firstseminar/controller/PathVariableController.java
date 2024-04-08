@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class PathVariableController {
     @RequestMapping("/path/{name}")
-    public String pathVariable(@PathVariable("name")String userName){
-        return "PathVar 연습 name:"+userName;
+    public String pathVariable(@PathVariable("name")String menuName){
+        return "PathVar 연습 name:"+menuName;
     }
     @RequestMapping("/pathV2/{name}")
     public String pathVariableV2(@PathVariable String  name){

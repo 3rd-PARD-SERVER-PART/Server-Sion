@@ -1,36 +1,36 @@
-package org.africalib.gallery.secondassignment.user.controller;
+package org.africalib.gallery.secondassignment.menu.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.africalib.gallery.secondseminar.user.dto.UserDto;
-import org.africalib.gallery.secondseminar.user.service.UserService;
+import org.africalib.gallery.secondseminar.menu.dto.MenuDto;
+import org.africalib.gallery.secondseminar.menu.service.MenuService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserController {
-    private final UserService userService;
+@RequestMapping("/menu")
+public class MenuController {
+    private final MenuService menuService;
     @PostMapping("")
-    public void saveUser(@RequestBody UserDto userDto){
-        userService.saveUser(userDto);
+    public void saveMenu(@RequestBody MenuDto menuDto){
+        menuService.saveMenu(menuDto);
     }
     @GetMapping("/{id}")
-    public UserDto findById(@PathVariable Integer id){
-        return userService.findById(id);
+    public MenuDto findById(@PathVariable Integer id){
+        return menuService.findById(id);
     }
     @GetMapping("")
-    public List<UserDto> findAll(){
-        return userService.findAll();
+    public List<MenuDto> findAll(){
+        return menuService.findAll();
     }
     @PatchMapping("/{id}")
     @PatchMapping("/{id}")
-    public void update(@PathVariable Integer id, @RequestBody UserDto userDto){
-        userService.update(id, userDto);
+    public void update(@PathVariable Integer id, @RequestBody MenuDto menuDto){
+        menuService.update(id, menuDto);
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id){
-        userService.delete(id);
+        menuService.delete(id);
     }
 }

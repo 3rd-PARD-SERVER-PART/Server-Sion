@@ -1,4 +1,4 @@
-package org.africalib.gallery.secondassignment.user;
+package org.africalib.gallery.secondassignment.menu;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class User {
+public class Menu {
     private Integer id;
     private String name;
     private Integer price;

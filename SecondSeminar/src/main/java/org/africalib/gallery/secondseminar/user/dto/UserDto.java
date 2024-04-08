@@ -1,4 +1,4 @@
-package org.africalib.gallery.secondseminar.user.dto;
+package org.africalib.gallery.secondseminar.menu.dto;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class MenuDto {
     private Integer studentId;
     private String studentName;
 }

@@ -1,4 +1,4 @@
-package org.africalib.gallery.secondassignment.user.controller;
+package org.africalib.gallery.secondassignment.menu.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

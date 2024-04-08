@@ -3,32 +3,32 @@ package com.pard.firstseminar.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/menu")
 
 public class RestAPIController {
-    @GetMapping("{userId}")
-    public String hi(@PathVariable Integer userId){
-        return "Get으로 온 컨트롤러" + userId;
+    @GetMapping("{menuNameNameId}")
+    public String hi(@PathVariable Integer menuId){
+        return "Get으로 온 컨트롤러" + menuId;
     }
     @PostMapping
-    public String userAll(){
-        return "Post : user Create";
+    public String menuAll(){
+        return "Post : menu Create";
     }
     @GetMapping
-    public String userCreate(){
-        return "get : user Read";
+    public String menuCreate(){
+        return "get : menu Read";
     }
     @PutMapping
-    public String userUpdate(){
-        return "put : user update";
+    public String menuUpdate(){
+        return "put : menu update";
     }
     @PatchMapping
-    public String userUpdateByPatch(){
-        return "patch : userUpdateByPatch";
+    public String menuUpdateByPatch(){
+        return "patch : menuUpdateByPatch";
     }
     @DeleteMapping
-    public String userDelete(){
-        return "delete : userDelete";
+    public String menuDelete(){
+        return "delete : menuDelete";
     }
 }
 
