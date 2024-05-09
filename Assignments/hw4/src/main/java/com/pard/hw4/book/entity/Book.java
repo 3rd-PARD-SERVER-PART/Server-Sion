@@ -3,7 +3,6 @@ package com.pard.hw4.book.entity;
 import com.pard.hw4.book.dto.BookCreateDto;
 import com.pard.hw4.user.entity.User;
 import jakarta.persistence.*;
-import jakarta.validation.groups.Default;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -21,17 +20,17 @@ public class Book {
     private String name;
 
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+
 
     @ColumnDefault("0")
     private boolean isLoaned;
 
-    //생성자 방식은 새로 만드는 것(create)만 가능하다.
-    public Book(BookCreateDto dto, User user){
-        this.name = dto.getName();
-        this.user = user;
-        this.isLoaned=false;
+    public static Book toEntity(BookCreateDto dto){
+        return Book.builder()
+                .name(dto.getName())
+                .build();
+    }
+    public void change(boolean loaned){
+        this.isLoaned = loaned;
     }
 }

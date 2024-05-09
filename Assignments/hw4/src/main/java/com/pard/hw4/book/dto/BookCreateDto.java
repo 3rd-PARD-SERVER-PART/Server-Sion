@@ -7,6 +7,4 @@ import lombok.Setter;
 @Setter
 public class BookCreateDto {
     private String name;
-    private Long bookId;
-    private boolean isLoaned;
 }

@@ -25,5 +25,9 @@ public class BookController {
         return bookService.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public List<BookReadDto> deleteById(@PathVariable Long id) {
+        return bookService.deleteById(id);
+    }
 
 }

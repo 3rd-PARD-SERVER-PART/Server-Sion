@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class UserDto {
@@ -27,21 +28,13 @@ public class UserDto {
         private String name;
         private Integer age;
         private String major;
-        private List<BookReadDto> books;
+        private List<UserLoanDto.Read> history;
 
-        public Read(User user){
+        public Read(User user) {
             this.id = user.getId();
             this.name = user.getName();
             this.age = user.getAge();
             this.major = user.getMajor();
-        }
-
-        public Read(User user, List<BookReadDto> books){
-            this.id = user.getId();
-            this.name = user.getName();
-            this.age = user.getAge();
-            this.major = user.getMajor();
-            this.books = books;
         }
     }
 }

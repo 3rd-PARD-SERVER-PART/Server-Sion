@@ -27,9 +27,8 @@ public class User {
     private String major;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Book> books = new ArrayList<>();
+    private List<UserLoan> userLoan = new ArrayList<>();
 
-    // method 방식은 update가 가능하다.
     public static User toEntity(UserDto.Create dto){
         return User.builder()
                 .name(dto.getName())
