@@ -1,6 +1,6 @@
-package com.example.seminar5.config;
+package com.example.hw5.config;
 
-import com.example.seminar5.oauth.PrincipalOauth2UserService;
+import com.example.hw5.oauth.service.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.crypto.spec.OAEPParameterSpec;
 
 @Configuration
 @EnableWebSecurity
