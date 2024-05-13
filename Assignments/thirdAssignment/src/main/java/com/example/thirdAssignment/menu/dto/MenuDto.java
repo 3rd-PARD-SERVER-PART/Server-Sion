@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class MenuDto {
+public class MenuDto { //create, read, update, delete를 위한 DTO
     private String menuName;
     private String menuPrice;
 }

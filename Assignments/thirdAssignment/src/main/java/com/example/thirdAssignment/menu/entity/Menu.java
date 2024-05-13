@@ -17,14 +17,14 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long menuId;
     
-    @Column(name = "menuName")
+    @Column(name = "menuName") //DB컬럼 이름 지정 굳이 필요하지 않음
     private String menuName;
 
     @Column(name = "menuPrice")
     private int menuPrice;
     
     
-    @CreationTimestamp
+    @CreationTimestamp //자동으로 현재 시간이 입력됨
     private Timestamp menuSignupTime;
 
 

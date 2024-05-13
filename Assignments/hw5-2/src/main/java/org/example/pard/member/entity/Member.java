@@ -35,4 +35,10 @@ public class Member {
                 .name(dto.getName())
                 .build();
     }
+
+    public void updateById(Member member, MemberCreateDTO dto) {
+        member.age = dto.getAge();
+        member.part = dto.getPart();
+        member.name = dto.getName();
+    }
 }

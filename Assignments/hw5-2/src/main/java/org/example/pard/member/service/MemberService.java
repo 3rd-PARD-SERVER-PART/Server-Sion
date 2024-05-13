@@ -41,5 +41,9 @@ public class MemberService {
         memberRepo.deleteById(id);
     } // id로 삭제
 
-
+    public void updateById(Long id, MemberCreateDTO dto) {
+        Member member = memberRepo.findById(id).orElseThrow();
+        member.updateById(member,dto);
+        memberRepo.save(member);
+    }
 }
