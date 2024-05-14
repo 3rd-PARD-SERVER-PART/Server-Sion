@@ -6,7 +6,7 @@ import com.example.thirdAssignment.menu.entity.Menu;
 import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Menu, Long> {
-    public Menu findByMenuName(String menuName);
+    Menu findByMenuName(String menuName);
 
     List<Menu> findByMenuPriceLessThan(int price);
 
