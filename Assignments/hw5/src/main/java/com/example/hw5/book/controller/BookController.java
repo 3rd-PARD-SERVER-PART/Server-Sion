@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
-
+//dto를 받아서 bookService에 전달
     @PostMapping("")
     public String createBook(@RequestBody BookCreateDto dto){
         bookService.createBook(dto);
