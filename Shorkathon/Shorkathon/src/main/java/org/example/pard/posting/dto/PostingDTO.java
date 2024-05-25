@@ -4,6 +4,7 @@ import lombok.*;
 import org.example.pard.posting.entity.Posting;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -21,7 +22,7 @@ public class PostingDTO {
         private String postContent;
         private String postTitle;
         private int feeling;
-        private time postedTime;
+        private String postDate;
     }
 
     @Getter
@@ -34,14 +35,18 @@ public class PostingDTO {
         private String postContent;
         private String postTitle;
         private int feeling;
+        private String postDate;
         private Long imageId;
+
+        public Read(Long postId, String postContent, int feeling, String postDate, Long imageId) {
+        }
 
         public static Read fromEntity(Posting posting) {
             return new Read(
                     posting.getPostId(),
                     posting.getPostContent(),
-                    posting.getPostTitle(),
                     posting.getFeeling(),
+                    posting.getPostDate(),
                     posting.getImage().getImageId()
             );
         }

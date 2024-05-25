@@ -1,5 +1,6 @@
 package org.example.pard.Image.controller;
 
+import org.example.pard.Image.entity.Image;
 import org.example.pard.Image.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class ImageController {
     public ResponseEntity<Long> uploadImage(@RequestBody MultipartFile image) {
         return imageService.uploadImage(image);
     }
+
 /*
     @GetMapping("/get")
     public ResponseEntity<Long> getPostId() {
@@ -30,15 +32,17 @@ public class ImageController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Long> getPostImage(@PathVariable Long postId) {
-        Long imageId = imageService.getPostImage(postId).getImageId();
-        if (imageId != null) {
-            return ResponseEntity.ok(imageId);
+     */
+
+    @GetMapping("/{id}")
+    public Image getImage(@PathVariable Long imageId) {
+        Image image = imageService.findById(imageId);
+        if (image != null) {
+            return image;
         } else {
-            return ResponseEntity.badRequest().body(null);
+            return null;
         }
     }
 
- */
+
 }
