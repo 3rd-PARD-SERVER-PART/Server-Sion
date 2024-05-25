@@ -1,44 +1,51 @@
 package org.example.pard.posting.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import org.example.pard.Image.entity.Image;
+import org.example.pard.posting.entity.Posting;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
-public class PostingDTO {    @Setter
-@Getter
-public static class Create{
-    private String postContent;
-    private String postTitle;
-    private int feeling;
-}
-    @Setter
+public class PostingDTO {
+
     @Getter
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Read{
-        private Long postId;
-        private int photoId;
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class Create {
         private String postContent;
         private String postTitle;
         private int feeling;
-        private Timestamp postedTime;
-        private Image image;
+        private time postedTime;
+    }
 
-        // private List<CommentDTO.Read> commentList;
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class Read {
+        private Long postId;
+        private String postContent;
+        private String postTitle;
+        private int feeling;
+        private Long imageId;
 
-        public Read(Long postId, int photoId, String postContent, String postTitle, int feeling, Timestamp postedTime) {
-            this.postId = postId;
-            this.photoId = photoId;
-            this.postContent = postContent;
-            this.postTitle = postTitle;
-            this.feeling = feeling;
-            this.postedTime = postedTime;
+        public static Read fromEntity(Posting posting) {
+            return new Read(
+                    posting.getPostId(),
+                    posting.getPostContent(),
+                    posting.getPostTitle(),
+                    posting.getFeeling(),
+                    posting.getImage().getImageId()
+            );
         }
     }
+
+
 }

@@ -20,10 +20,10 @@ public class ImageController {
     public ResponseEntity<Long> uploadImage(@RequestBody MultipartFile image) {
         return imageService.uploadImage(image);
     }
-
+/*
     @GetMapping("/get")
-    public ResponseEntity<Long> getAllImages() {
-        Long imageId = imageService.getAllImages();
+    public ResponseEntity<Long> getPostId() {
+        Long imageId = imageService.getPostId();
         if (imageId != null) {
             return ResponseEntity.ok(imageId);
         } else {
@@ -39,4 +39,6 @@ public class ImageController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+
+ */
 }

@@ -1,63 +1,42 @@
 package org.example.pard.posting.service;
 
-import java.util.List;
-import java.util.Random;
-
 import lombok.RequiredArgsConstructor;
-import org.example.pard.comment.dto.CommentDTO;
-import org.example.pard.posting.dto.GetPostingDTO;
-import org.example.pard.posting.dto.PostingDTO;
 import org.example.pard.Image.entity.Image;
-import org.example.pard.posting.entity.Posting;
 import org.example.pard.Image.repository.ImageRepository;
+import org.example.pard.Image.service.ImageService;
+import org.example.pard.posting.dto.PostingDTO;
+import org.example.pard.posting.entity.Posting;
 import org.example.pard.posting.repository.PostingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 public class PostingService {
 
     private final PostingRepository postingRepository;
+    private final ImageService imageService;
+    private final ImageRepository imageRepository;
 
-    @Autowired
-    private ImageRepository imageRepository;
 
-    public void createPost(PostingDTO.Create dto) {
-        PostingRepository.save(Posting.toEntity(dto));
-    }
-    public PostingDTO getRandomPost() {
+    public void createPost(PostingDTO.Create dto, Image image) {
+        postingRepository.save(Posting.toEntity(dto, image));
     }
 
-    public PostingDTO getPostWithComments(Long postId) {
-        Posting post = postingRepository.findById(postId).orElse(null);
-        if (post != null) {
-            return PostingDTO.builder()
-                    .postId(post.getPostId())
-                    .photoId(post.getPhotoId())
-                    .postContent(post.getPostContent())
-                    .postTitle(post.getPostTitle())
-                    .feeling(post.getFeeling())
-                    .postedTime(post.getPostedTime())
-                    .imageId(post.getImage().getImageId())
-                    .commentList(post.getCommentList().stream()
-                            .map(comment -> CommentDTO.builder()
-                                    .commentId(comment.getCommentId())
-                                    .commentContent(comment.getCommentContent())
-                                    .postId(comment.getPosting().getPostId())
-                                    .build())
-                            .collect(Collectors.toList()))
-                    .build();
+    public PostingDTO.Read getRandomPost() {
+        List<Posting> allPostings = postingRepository.findAll();
+        if (allPostings.isEmpty()) {
+            return null; // 혹은 예외 처리를 수행할 수 있습니다.
         }
-        return null;
+        Random random = new Random();
+        int randomIndex = random.nextInt(allPostings.size());
+        Posting randomPosting = allPostings.get(randomIndex);
+        return PostingDTO.Read.fromEntity(randomPosting);
     }
+
+
+
 }

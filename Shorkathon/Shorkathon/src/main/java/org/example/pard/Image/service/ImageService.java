@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 @Service
 public class ImageService {
 
+
     @Autowired
     private ImageRepository imageRepository;
 
@@ -59,10 +60,17 @@ public class ImageService {
             return ResponseEntity.status(500).body(null);
         }
     }
-    public Long getAllImages() {
-        return imageRepository.count();
+    public Image findById(Long imageId) {
+        return imageRepository.findById(imageId).orElseThrow();
     }
+    /*
     public Image getPostImage(Long postId) {
-        return imageRepository.findByPostId(postId);
+        return imageRepository.findByPosting_PostId(postId);
     }
+
+    public Long getPostId() {
+        return imageRepository.findTopByOrderByPostId().getPostId();
+    }
+
+     */
 }

@@ -1,13 +1,18 @@
 package org.example.pard.Image.dto;
 
 import lombok.*;
+import org.example.pard.posting.entity.Posting;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class ImageDTO {
-    private Long imageId;
-    private String filePath;
+    @Setter
+    @Getter
+    public class Create{
+        private String filePath;
+        private Long imageId;
+
+    }
 }
