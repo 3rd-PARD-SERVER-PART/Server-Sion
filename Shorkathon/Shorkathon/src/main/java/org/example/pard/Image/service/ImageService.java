@@ -60,6 +60,10 @@ public class ImageService {
             return ResponseEntity.status(500).body(null);
         }
     }
+    public String getFilePathById(Long imageId) {
+        return findById(imageId).getFilePath();
+    }
+
     public Image findById(Long imageId) {
         return imageRepository.findById(imageId).orElseThrow();
     }

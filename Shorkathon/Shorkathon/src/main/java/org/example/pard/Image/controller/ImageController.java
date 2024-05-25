@@ -35,13 +35,9 @@ public class ImageController {
      */
 
     @GetMapping("/{id}")
-    public Image getImage(@PathVariable Long imageId) {
-        Image image = imageService.findById(imageId);
-        if (image != null) {
-            return image;
-        } else {
-            return null;
-        }
+    public String getImageFilePath(@PathVariable Long id) {
+        String filePath = imageService.getFilePathById(id);
+        return filePath;
     }
 
 

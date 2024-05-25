@@ -20,25 +20,28 @@ public class PostingDTO {
     @Builder
     public static class Create {
         private String postContent;
-        private String postTitle;
         private int feeling;
         private String postDate;
     }
 
     @Getter
     @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
+    @RequiredArgsConstructor
     @Builder
     public static class Read {
         private Long postId;
         private String postContent;
-        private String postTitle;
         private int feeling;
         private String postDate;
         private Long imageId;
 
         public Read(Long postId, String postContent, int feeling, String postDate, Long imageId) {
+            this.postId = postId;
+            this.postContent = postContent;
+            this.feeling = feeling;
+            this.postDate = postDate;
+            this.imageId = imageId;
+
         }
 
         public static Read fromEntity(Posting posting) {
