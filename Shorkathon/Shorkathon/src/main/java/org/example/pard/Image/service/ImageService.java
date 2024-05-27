@@ -30,28 +30,39 @@ public class ImageService {
         }
 
         try {
+            // Save the uploaded file to a temporary location
             String tempDir = System.getProperty("java.io.tmpdir");
             String tempFilePath = tempDir + image.getOriginalFilename();
             image.transferTo(new File(tempFilePath));
 
+            // Read the image to validate it
             BufferedImage bufferedImage = ImageIO.read(new File(tempFilePath));
             if (bufferedImage == null) {
                 System.out.println("The provided file is not a valid image.");
                 return ResponseEntity.badRequest().body(null);
             }
 
+            // Define the directory to save the image
             String uploadDir = "/Users/ision/Desktop/Server-Sion/Shorkathon/Shorkathon/src/main/resources/static/images/";
             Files.createDirectories(Paths.get(uploadDir));
 
-            String fileName = new File(tempFilePath).getName();
-            File outputFile = new File(uploadDir + fileName);
-
-            ImageIO.write(bufferedImage, "jpg", outputFile);
-
+            // Save image record in the database to get the ID
             Image imageRecord = new Image();
-            imageRecord.setFilePath(outputFile.getAbsolutePath());
+            imageRecord.setFilePath("");
             Image savedImage = imageRepository.save(imageRecord);
 
+            // Create the new file name using the image ID
+            String newFileName = "image" + savedImage.getImageId() + ".jpg";
+            File outputFile = new File(uploadDir + newFileName);
+
+            // Save the image file with the new name
+            ImageIO.write(bufferedImage, "jpg", outputFile);
+
+            // Update the image record with the correct file path and save again
+            imageRecord.setFilePath(outputFile.getAbsolutePath());
+            imageRepository.save(imageRecord);
+
+            // Delete the temporary file
             new File(tempFilePath).delete();
 
             return ResponseEntity.ok(savedImage.getImageId());
@@ -60,6 +71,7 @@ public class ImageService {
             return ResponseEntity.status(500).body(null);
         }
     }
+
     public String getFilePathById(Long imageId) {
         return findById(imageId).getFilePath();
     }
