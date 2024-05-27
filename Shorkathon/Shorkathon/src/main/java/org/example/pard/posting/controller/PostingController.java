@@ -2,8 +2,6 @@ package org.example.pard.posting.controller;
 
 import org.example.pard.Image.service.ImageService;
 
-import org.example.pard.comment.dto.CommentDTO;
-import org.example.pard.comment.entity.Comment;
 import org.example.pard.comment.service.CommentService;
 import org.example.pard.posting.dto.PostingDTO;
 import org.example.pard.posting.service.PostingService;
@@ -33,8 +31,6 @@ public class PostingController {
         postingService.createPost(postingDTO, imageService.findById(imageId) );
         return ResponseEntity.ok("추가됨");
     }
-
-
 
 
     @GetMapping("/random")
