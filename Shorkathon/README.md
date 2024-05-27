@@ -122,8 +122,8 @@ textLabel로 메모를 작성하고 업로드 할 수 있습니다.
 
 <img src ="https://github.com/3rd-PARD-iOS-PART/Phoenix/assets/162880508/b125c90a-b0b6-48a9-92dc-3eadc05797f2" width =300 height =600>
 
-<img src="../pics/shorkathon_test.png" width="300" >
----
+<img src="../pics/shorkathon_test.png" width=300 height =600>
+
 
 
 ## 사용한 기술
