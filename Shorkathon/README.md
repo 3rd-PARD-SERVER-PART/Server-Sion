@@ -1,5 +1,7 @@
 # 파드 4조 불사조팀
----
+
+- 해당 프로젝트의 프론트 주소 https://github.com/3rd-PARD-iOS-PART/Phoenix
+- 해당 프로젝트의 백엔드 주소 https://github.com/3rd-PARD-SERVER-PART/Server-Sion
 
 
 - 스플래시 화면 구현했습니다.
