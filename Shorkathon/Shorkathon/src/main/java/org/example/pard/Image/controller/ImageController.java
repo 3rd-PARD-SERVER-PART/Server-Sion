@@ -3,6 +3,9 @@ package org.example.pard.Image.controller;
 import org.example.pard.Image.entity.Image;
 import org.example.pard.Image.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,9 +38,23 @@ public class ImageController {
      */
 
     @GetMapping("/{id}")
-    public String getImageFilePath(@PathVariable Long id) {
-        String filePath = imageService.getFilePathById(id);
-        return filePath;
+    public ResponseEntity<Resource> getImage(@PathVariable Long id) {
+        try {
+            String filePath = imageService.getFilePathById(id);
+            Resource resource = imageService.getImageResource(filePath);
+            String contentType = imageService.getContentType(filePath);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"");
+
+            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 

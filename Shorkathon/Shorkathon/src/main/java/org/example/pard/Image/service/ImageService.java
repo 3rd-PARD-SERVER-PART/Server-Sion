@@ -3,6 +3,8 @@ package org.example.pard.Image.service;
 import org.example.pard.Image.entity.Image;
 import org.example.pard.Image.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 
@@ -78,6 +81,19 @@ public class ImageService {
 
     public Image findById(Long imageId) {
         return imageRepository.findById(imageId).orElseThrow();
+    }
+    public Resource getImageResource(String filePath) throws Exception {
+        Path path = Paths.get(filePath);
+        File file = path.toFile();
+        if (!file.exists()) {
+            throw new IllegalArgumentException("File not found");
+        }
+        return new FileSystemResource(file);
+    }
+
+    public String getContentType(String filePath) throws Exception {
+        Path path = Paths.get(filePath);
+        return Files.probeContentType(path);
     }
     /*
     public Image getPostImage(Long postId) {

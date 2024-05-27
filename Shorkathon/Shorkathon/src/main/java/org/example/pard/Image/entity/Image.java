@@ -18,6 +18,7 @@ public class Image {
 
     private String filePath;
 
+
 //    @OneToOne(mappedBy = "image")
 //    @JoinColumn(name = "post_id")
 //    private Posting posting;
