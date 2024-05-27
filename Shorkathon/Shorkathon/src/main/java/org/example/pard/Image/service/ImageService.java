@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 
 @Service
@@ -95,14 +97,36 @@ public class ImageService {
         Path path = Paths.get(filePath);
         return Files.probeContentType(path);
     }
-    /*
-    public Image getPostImage(Long postId) {
-        return imageRepository.findByPosting_PostId(postId);
+    public List<String> getAllContentTypes(List<String> filePaths) throws Exception {
+        return filePaths.stream()
+                .map(filePath -> {
+                    try {
+                        return getContentType(filePath);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+    public List<String> getAllImageFilePaths() {
+        return imageRepository.findAll()
+                .stream()
+                .map(image -> image.getFilePath())
+                .collect(Collectors.toList());
     }
 
-    public Long getPostId() {
-        return imageRepository.findTopByOrderByPostId().getPostId();
+    public List<Resource> getAllImages(List<String> filePaths) throws Exception {
+        return filePaths.stream()
+                .map(filePath -> {
+                    try {
+                        return getImageResource(filePath);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
-     */
 }

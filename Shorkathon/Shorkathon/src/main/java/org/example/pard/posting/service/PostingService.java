@@ -7,7 +7,6 @@ import org.example.pard.Image.service.ImageService;
 import org.example.pard.posting.dto.PostingDTO;
 import org.example.pard.posting.entity.Posting;
 import org.example.pard.posting.repository.PostingRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +25,15 @@ public class PostingService {
         postingRepository.save(Posting.toEntity(dto, image));
     }
 
+    public PostingDTO.ReadComment getPost(Long postId) {
+        Posting posting = postingRepository.findById(postId).orElse(null);
+        if (posting == null) {
+            return null;
+        }
+        return PostingDTO.ReadComment.fromEntity(posting);
+    }
+
+
     public PostingDTO.Read getRandomPost() {
         List<Posting> allPostings = postingRepository.findAll();
         if (allPostings.isEmpty()) {
@@ -36,6 +44,8 @@ public class PostingService {
         Posting randomPosting = allPostings.get(randomIndex);
         return PostingDTO.Read.fromEntity(randomPosting);
     }
+
+
 
 
 

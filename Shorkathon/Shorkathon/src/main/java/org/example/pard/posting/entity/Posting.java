@@ -3,6 +3,7 @@ package org.example.pard.posting.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.pard.Image.entity.Image;
+import org.example.pard.comment.entity.Comment;
 import org.example.pard.posting.dto.PostingDTO;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -25,6 +26,14 @@ public class Posting {
     @OneToOne
     private Image image;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "comment_id", referencedColumnName = "commentId")
+    private Comment comment;
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+        comment.setPosting(this);
+    }
     public static Posting toEntity(PostingDTO.Create dto, Image image) {
         return Posting.builder()
                 .postContent(dto.getPostContent())

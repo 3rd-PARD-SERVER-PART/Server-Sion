@@ -2,6 +2,9 @@ package org.example.pard.posting.controller;
 
 import org.example.pard.Image.service.ImageService;
 
+import org.example.pard.comment.dto.CommentDTO;
+import org.example.pard.comment.entity.Comment;
+import org.example.pard.comment.service.CommentService;
 import org.example.pard.posting.dto.PostingDTO;
 import org.example.pard.posting.service.PostingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class PostingController {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private CommentService commentService;
     @PostMapping("/create")
     public ResponseEntity<String> createPost(@RequestPart PostingDTO.Create postingDTO,
                                              @RequestPart MultipartFile image
@@ -28,6 +34,9 @@ public class PostingController {
         return ResponseEntity.ok("추가됨");
     }
 
+
+
+
     @GetMapping("/random")
     public ResponseEntity<PostingDTO.Read> getRandomPost() {
         PostingDTO.Read randomPost = postingService.getRandomPost();
@@ -35,6 +44,15 @@ public class PostingController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(randomPost);
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostingDTO.ReadComment> getPost(@PathVariable Long postId) {
+        PostingDTO.ReadComment post = postingService.getPost(postId);
+        if (post == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(post);
     }
 
 }
