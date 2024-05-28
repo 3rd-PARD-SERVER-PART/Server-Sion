@@ -7,8 +7,8 @@ import org.example.pard.posting.entity.Posting;
 @Setter
 @RequiredArgsConstructor
 @Builder
-public class PostingDTO {
 
+public class PostingDTO {
     @Getter
     @Setter
     @NoArgsConstructor
@@ -32,7 +32,6 @@ public class PostingDTO {
 
     @Getter
     @Setter
-    @RequiredArgsConstructor
     @Builder
     public static class Read {
         private Long postId;
