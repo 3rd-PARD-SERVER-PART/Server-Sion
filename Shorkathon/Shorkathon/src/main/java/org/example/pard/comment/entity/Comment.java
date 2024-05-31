@@ -20,7 +20,7 @@ public class Comment {
 
 
     @OneToOne
-    @JoinColumn(name = "comment") // db연결 위한 파트
+    @JoinColumn(name = "commentId") // db연결 위한 파트
     private Posting posting;
 
     public static Comment toEntity(CommentDTO.Create dto) {
