@@ -20,10 +20,10 @@ public class Comment {
 
 
     @OneToOne
-    @JoinColumn(name = "comment") // Specifies the join column in the database
+    @JoinColumn(name = "comment") // db연결 위한 파트
     private Posting posting;
 
-    public static Comment toEntity(CommentDTO.Create dto, Posting posting) {
+    public static Comment toEntity(CommentDTO.Create dto) {
         return Comment.builder()
                 .commentContent(dto.getCommentContent())
                 .build();

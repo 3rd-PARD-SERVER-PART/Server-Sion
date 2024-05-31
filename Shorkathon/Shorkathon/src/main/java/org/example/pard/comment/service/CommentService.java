@@ -27,7 +27,7 @@ public class CommentService {
         Optional<Posting> postingOptional = postingRepository.findById(postId);
         if (postingOptional.isPresent()) {
             Posting posting = postingOptional.get();
-            Comment comment = Comment.toEntity(dto, posting);
+            Comment comment = Comment.toEntity(dto);
             posting.setComment(comment); // Set comment to posting
             commentRepository.save(comment); // Save the comment
             postingRepository.save(posting); // Save the posting to update the relationship
